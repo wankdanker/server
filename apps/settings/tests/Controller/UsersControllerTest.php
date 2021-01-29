@@ -202,42 +202,42 @@ class UsersControllerTest extends \Test\TestCase {
 					IAccountManager::PROPERTY_DISPLAYNAME =>
 						[
 							'value' => 'Display name',
-							'scope' => AccountManager::VISIBILITY_CONTACTS_ONLY,
-							'verified' => AccountManager::NOT_VERIFIED,
+							'scope' => IAccountManager::VISIBILITY_CONTACTS_ONLY,
+							'verified' => IAccountManager::NOT_VERIFIED,
 						],
 					IAccountManager::PROPERTY_ADDRESS =>
 						[
 							'value' => '',
-							'scope' => AccountManager::VISIBILITY_PRIVATE,
-							'verified' => AccountManager::NOT_VERIFIED,
+							'scope' => IAccountManager::VISIBILITY_PRIVATE,
+							'verified' => IAccountManager::NOT_VERIFIED,
 						],
 					IAccountManager::PROPERTY_WEBSITE =>
 						[
 							'value' => '',
-							'scope' => AccountManager::VISIBILITY_PRIVATE,
-							'verified' => AccountManager::NOT_VERIFIED,
+							'scope' => IAccountManager::VISIBILITY_PRIVATE,
+							'verified' => IAccountManager::NOT_VERIFIED,
 						],
 					IAccountManager::PROPERTY_EMAIL =>
 						[
 							'value' => '',
-							'scope' => AccountManager::VISIBILITY_CONTACTS_ONLY,
-							'verified' => AccountManager::NOT_VERIFIED,
+							'scope' => IAccountManager::VISIBILITY_CONTACTS_ONLY,
+							'verified' => IAccountManager::NOT_VERIFIED,
 						],
 					IAccountManager::PROPERTY_AVATAR =>
 						[
-							'scope' => AccountManager::VISIBILITY_CONTACTS_ONLY
+							'scope' => IAccountManager::VISIBILITY_CONTACTS_ONLY
 						],
 					IAccountManager::PROPERTY_PHONE =>
 						[
 							'value' => '',
-							'scope' => AccountManager::VISIBILITY_PRIVATE,
-							'verified' => AccountManager::NOT_VERIFIED,
+							'scope' => IAccountManager::VISIBILITY_PRIVATE,
+							'verified' => IAccountManager::NOT_VERIFIED,
 						],
 					IAccountManager::PROPERTY_TWITTER =>
 						[
 							'value' => '',
-							'scope' => AccountManager::VISIBILITY_PRIVATE,
-							'verified' => AccountManager::NOT_VERIFIED,
+							'scope' => IAccountManager::VISIBILITY_PRIVATE,
+							'verified' => IAccountManager::NOT_VERIFIED,
 						],
 				]);
 
@@ -497,18 +497,18 @@ class UsersControllerTest extends \Test\TestCase {
 
 	public function dataTestGetVerificationCode() {
 		$accountDataBefore = [
-			IAccountManager::PROPERTY_WEBSITE => ['value' => 'https://nextcloud.com', 'verified' => AccountManager::NOT_VERIFIED],
-			IAccountManager::PROPERTY_TWITTER => ['value' => '@nextclouders', 'verified' => AccountManager::NOT_VERIFIED, 'signature' => 'theSignature'],
+			IAccountManager::PROPERTY_WEBSITE => ['value' => 'https://nextcloud.com', 'verified' => IAccountManager::NOT_VERIFIED],
+			IAccountManager::PROPERTY_TWITTER => ['value' => '@nextclouders', 'verified' => IAccountManager::NOT_VERIFIED, 'signature' => 'theSignature'],
 		];
 
 		$accountDataAfterWebsite = [
-			IAccountManager::PROPERTY_WEBSITE => ['value' => 'https://nextcloud.com', 'verified' => AccountManager::VERIFICATION_IN_PROGRESS, 'signature' => 'theSignature'],
-			IAccountManager::PROPERTY_TWITTER => ['value' => '@nextclouders', 'verified' => AccountManager::NOT_VERIFIED, 'signature' => 'theSignature'],
+			IAccountManager::PROPERTY_WEBSITE => ['value' => 'https://nextcloud.com', 'verified' => IAccountManager::VERIFICATION_IN_PROGRESS, 'signature' => 'theSignature'],
+			IAccountManager::PROPERTY_TWITTER => ['value' => '@nextclouders', 'verified' => IAccountManager::NOT_VERIFIED, 'signature' => 'theSignature'],
 		];
 
 		$accountDataAfterTwitter = [
-			IAccountManager::PROPERTY_WEBSITE => ['value' => 'https://nextcloud.com', 'verified' => AccountManager::NOT_VERIFIED],
-			IAccountManager::PROPERTY_TWITTER => ['value' => '@nextclouders', 'verified' => AccountManager::VERIFICATION_IN_PROGRESS, 'signature' => 'theSignature'],
+			IAccountManager::PROPERTY_WEBSITE => ['value' => 'https://nextcloud.com', 'verified' => IAccountManager::NOT_VERIFIED],
+			IAccountManager::PROPERTY_TWITTER => ['value' => '@nextclouders', 'verified' => IAccountManager::VERIFICATION_IN_PROGRESS, 'signature' => 'theSignature'],
 		];
 
 		return [
