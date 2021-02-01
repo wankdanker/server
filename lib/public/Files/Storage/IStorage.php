@@ -434,7 +434,7 @@ interface IStorage {
 
 	/**
 	 * @param string $path
-	 * @param IStorage $storage
+	 * @param IStorage|null $storage
 	 * @return ICache
 	 * @since 9.0.0
 	 */

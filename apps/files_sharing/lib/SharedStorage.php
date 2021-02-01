@@ -40,6 +40,7 @@ use OC\Files\Storage\FailedStorage;
 use OC\Files\Storage\Wrapper\PermissionsMask;
 use OC\User\NoUserException;
 use OCP\Constants;
+use OCP\Files\Cache\ICache;
 use OCP\Files\Cache\ICacheEntry;
 use OCP\Files\NotFoundException;
 use OCP\Files\Storage\IDisableEncryptionStorage;
@@ -370,8 +371,8 @@ class SharedStorage extends \OC\Files\Storage\Wrapper\Jail implements ISharedSto
 
 	/**
 	 * @param string $path
-	 * @param null $storage
-	 * @return Cache
+	 * @param IStorage|null $storage
+	 * @return ICache
 	 */
 	public function getCache($path = '', $storage = null) {
 		if ($this->cache) {
