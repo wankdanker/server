@@ -34,6 +34,9 @@ script('settings', [
 ]);
 ?>
 
+<!-- config hints for javascript -->
+<input type="hidden" name="lookupServerUploadEnabled" id="lookupServerUploadEnabled" value="<?php p($_['lookupServerUploadEnabled']); ?>" />
+
 <div id="personal-settings">
 	<div id="personal-settings-avatar-container" class="personal-settings-container">
 		<div>
@@ -68,9 +71,7 @@ script('settings', [
 				</div>
 				<span class="icon-checkmark hidden"></span>
 				<span class="icon-error hidden" ></span>
-				<?php if ($_['lookupServerUploadEnabled']) { ?>
 				<input type="hidden" id="avatarscope" value="<?php p($_['avatarScope']) ?>">
-				<?php } ?>
 			</form>
 		</div>
 		<div class="personal-settings-setting-box personal-settings-group-box section">
@@ -124,9 +125,7 @@ script('settings', [
 				<?php } ?>
 				<span class="icon-checkmark hidden"></span>
 				<span class="icon-error hidden" ></span>
-				<?php if ($_['lookupServerUploadEnabled']) { ?>
-					<input type="hidden" id="displaynamescope" value="<?php p($_['displayNameScope']) ?>">
-				<?php } ?>
+				<input type="hidden" id="displaynamescope" value="<?php p($_['displayNameScope']) ?>">
 			</form>
 		</div>
 		<div class="personal-settings-setting-box">
@@ -174,9 +173,7 @@ script('settings', [
 				<?php if ($_['displayNameChangeSupported']) { ?>
 					<em><?php p($l->t('For password reset and notifications')); ?></em>
 				<?php } ?>
-				<?php if ($_['lookupServerUploadEnabled']) { ?>
-					<input type="hidden" id="emailscope" value="<?php p($_['emailScope']) ?>">
-				<?php } ?>
+				<input type="hidden" id="emailscope" value="<?php p($_['emailScope']) ?>">
 			</form>
 		</div>
 		<?php if (!empty($_['phone']) || $_['lookupServerUploadEnabled']) { ?>
@@ -198,9 +195,7 @@ script('settings', [
 				       autocomplete="on" autocapitalize="none" autocorrect="off" />
 				<span class="icon-checkmark hidden"></span>
 				<span class="icon-error hidden" ></span>
-				<?php if ($_['lookupServerUploadEnabled']) { ?>
 				<input type="hidden" id="phonescope" value="<?php p($_['phoneScope']) ?>">
-				<?php } ?>
 			</form>
 		</div>
 		<?php } ?>
@@ -223,9 +218,7 @@ script('settings', [
 					   autocomplete="on" autocapitalize="none" autocorrect="off" />
 				<span class="icon-checkmark hidden"></span>
 				<span class="icon-error hidden" ></span>
-				<?php if ($_['lookupServerUploadEnabled']) { ?>
 				<input type="hidden" id="addressscope" value="<?php p($_['addressScope']) ?>">
-				<?php } ?>
 			</form>
 		</div>
 		<?php } ?>
@@ -279,9 +272,7 @@ script('settings', [
 				/>
 				<span class="icon-checkmark hidden"></span>
 				<span class="icon-error hidden" ></span>
-				<?php if ($_['lookupServerUploadEnabled']) { ?>
 				<input type="hidden" id="websitescope" value="<?php p($_['websiteScope']) ?>">
-				<?php } ?>
 			</form>
 		</div>
 		<?php } ?>
@@ -335,9 +326,7 @@ script('settings', [
 				/>
 				<span class="icon-checkmark hidden"></span>
 				<span class="icon-error hidden" ></span>
-				<?php if ($_['lookupServerUploadEnabled']) { ?>
 				<input type="hidden" id="twitterscope" value="<?php p($_['twitterScope']) ?>">
-				<?php } ?>
 			</form>
 		</div>
 		<?php } ?>
