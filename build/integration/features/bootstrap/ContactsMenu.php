@@ -21,7 +21,6 @@
  *
  */
 
-use Behat\Gherkin\Node\TableNode;
 use PHPUnit\Framework\Assert;
 
 trait ContactsMenu {
