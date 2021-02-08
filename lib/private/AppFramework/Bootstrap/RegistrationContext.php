@@ -80,6 +80,9 @@ class RegistrationContext {
 	/** @var array[] */
 	private $templateProviders = [];
 
+	/** @var array[] */
+	private $optionalIndexes = [];
+
 	/** @var ILogger */
 	private $logger;
 
@@ -196,6 +199,13 @@ class RegistrationContext {
 					$providerClass
 				);
 			}
+
+			public function registerOptionalIndex(string $class): void {
+				$this->context->registerOptionalIndex(
+					$this->appId,
+					$class
+				);
+			}
 		};
 	}
 
@@ -291,6 +301,13 @@ class RegistrationContext {
 
 	public function registerTemplateProvider(string $appId, string $class): void {
 		$this->templateProviders[] = [
+			'appId' => $appId,
+			'class' => $class,
+		];
+	}
+
+	public function registerOptionalIndex(string $appId, string $class): void {
+		$this->optionalIndexes[] = [
 			'appId' => $appId,
 			'class' => $class,
 		];
