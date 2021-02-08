@@ -501,4 +501,8 @@ class RegistrationContext {
 	public function getTemplateProviders(): array {
 		return $this->templateProviders;
 	}
+
+	public function getOptionalIndexes(): array {
+		return $this->optionalIndexes;
+	}
 }

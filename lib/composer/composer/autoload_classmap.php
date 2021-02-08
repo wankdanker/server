@@ -595,6 +595,7 @@ return array(
     'OC\\AppFramework\\Http\\Output' => $baseDir . '/lib/private/AppFramework/Http/Output.php',
     'OC\\AppFramework\\Http\\Request' => $baseDir . '/lib/private/AppFramework/Http/Request.php',
     'OC\\AppFramework\\Logger' => $baseDir . '/lib/private/AppFramework/Logger.php',
+    'OC\\AppFramework\\Maintenance\\OptionalIndexManager' => $baseDir . '/lib/private/AppFramework/Maintenance/OptionalIndexManager.php',
     'OC\\AppFramework\\Middleware\\AdditionalScriptsMiddleware' => $baseDir . '/lib/private/AppFramework/Middleware/AdditionalScriptsMiddleware.php',
     'OC\\AppFramework\\Middleware\\CompressionMiddleware' => $baseDir . '/lib/private/AppFramework/Middleware/CompressionMiddleware.php',
     'OC\\AppFramework\\Middleware\\MiddlewareDispatcher' => $baseDir . '/lib/private/AppFramework/Middleware/MiddlewareDispatcher.php',
