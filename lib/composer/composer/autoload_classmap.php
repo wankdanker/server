@@ -67,6 +67,7 @@ return array(
     'OCP\\AppFramework\\Http\\TooManyRequestsResponse' => $baseDir . '/lib/public/AppFramework/Http/TooManyRequestsResponse.php',
     'OCP\\AppFramework\\Http\\ZipResponse' => $baseDir . '/lib/public/AppFramework/Http/ZipResponse.php',
     'OCP\\AppFramework\\IAppContainer' => $baseDir . '/lib/public/AppFramework/IAppContainer.php',
+    'OCP\\AppFramework\\Maintenance\\IOptionalIndex' => $baseDir . '/lib/public/AppFramework/Maintenance/IOptionalIndex.php',
     'OCP\\AppFramework\\Middleware' => $baseDir . '/lib/public/AppFramework/Middleware.php',
     'OCP\\AppFramework\\OCSController' => $baseDir . '/lib/public/AppFramework/OCSController.php',
     'OCP\\AppFramework\\OCS\\OCSBadRequestException' => $baseDir . '/lib/public/AppFramework/OCS/OCSBadRequestException.php',

@@ -96,6 +96,7 @@ class ComposerStaticInit53792487c5a8370acc0b06b1a864ff4c
         'OCP\\AppFramework\\Http\\TooManyRequestsResponse' => __DIR__ . '/../../..' . '/lib/public/AppFramework/Http/TooManyRequestsResponse.php',
         'OCP\\AppFramework\\Http\\ZipResponse' => __DIR__ . '/../../..' . '/lib/public/AppFramework/Http/ZipResponse.php',
         'OCP\\AppFramework\\IAppContainer' => __DIR__ . '/../../..' . '/lib/public/AppFramework/IAppContainer.php',
+        'OCP\\AppFramework\\Maintenance\\IOptionalIndex' => __DIR__ . '/../../..' . '/lib/public/AppFramework/Maintenance/IOptionalIndex.php',
         'OCP\\AppFramework\\Middleware' => __DIR__ . '/../../..' . '/lib/public/AppFramework/Middleware.php',
         'OCP\\AppFramework\\OCSController' => __DIR__ . '/../../..' . '/lib/public/AppFramework/OCSController.php',
         'OCP\\AppFramework\\OCS\\OCSBadRequestException' => __DIR__ . '/../../..' . '/lib/public/AppFramework/OCS/OCSBadRequestException.php',
