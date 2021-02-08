@@ -24,20 +24,41 @@ declare(strict_types=1);
  *
  */
 
-namespace OCP\App\Maintenance;
+namespace OCP\AppFramework\Maintenance;
 
 /**
- * Interface to be implemented by apps that want to have their indexes listed
- * Use the IBootstrap to register this in your app
- *
  * @since 22.0.0
  */
-interface IMissingIndexProvider {
+interface IOptionalIndex {
 	/**
-	 * Get all the missing indexes for this app
+	 * Get the name of the optional index to display
 	 *
 	 * @since 22.0.0
-	 * @return IMissingIndex[]
+	 * @return string
 	 */
-	public function getMissingIndexes(): array;
+	public function getName(): string;
+
+	/**
+	 * Does the optional index already exist
+	 *
+	 * @since 22.0.0
+	 * @return bool
+	 */
+	public function exists(): bool;
+
+	/**
+	 * Adds the index
+	 *
+	 * @since 22.0.0
+	 */
+	public function add(): void;
+
+	/**
+	 * Get the SQL for the index creation so we can display this for admins
+	 * to run the queries directly on their DB
+	 *
+	 * @since 22.0.0
+	 * @return string
+	 */
+	public function getSQL(): string;
 }
