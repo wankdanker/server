@@ -59,28 +59,31 @@ class PluginManager {
 	 *
 	 * @var array
 	 */
-	private $plugins = null;
+	private $plugins = [];
 
 	/**
 	 * App collections
 	 *
 	 * @var array
 	 */
-	private $collections = null;
+	private $collections = [];
 
 	/**
 	 * Address book plugins
 	 *
 	 * @var IAddressBookProvider[]
 	 */
-	private $addressBookPlugins = null;
+	private $addressBookPlugins = [];
 
 	/**
 	 * Calendar plugins
 	 *
 	 * @var array
 	 */
-	private $calendarPlugins = null;
+	private $calendarPlugins = [];
+
+	/** @var bool */
+	private $populated = false;
 
 	/**
 	 * Contstruct a PluginManager
@@ -99,9 +102,7 @@ class PluginManager {
 	 * @return array
 	 */
 	public function getAppPlugins() {
-		if (null === $this->plugins) {
-			$this->populate();
-		}
+		$this->populate();
 		return $this->plugins;
 	}
 
@@ -111,9 +112,7 @@ class PluginManager {
 	 * @return array
 	 */
 	public function getAppCollections() {
-		if (null === $this->collections) {
-			$this->populate();
-		}
+		$this->populate();
 		return $this->collections;
 	}
 
@@ -121,9 +120,7 @@ class PluginManager {
 	 * @return IAddressBookProvider[]
 	 */
 	public function getAddressBookPlugins(): array {
-		if ($this->addressBookPlugins === null) {
-			$this->populate();
-		}
+		$this->populate();
 		return $this->addressBookPlugins;
 	}
 
@@ -133,20 +130,18 @@ class PluginManager {
 	 * @return array
 	 */
 	public function getCalendarPlugins():array {
-		if (null === $this->calendarPlugins) {
-			$this->populate();
-		}
+		$this->populate();
 		return $this->calendarPlugins;
 	}
 
 	/**
 	 * Retrieve plugin and collection list and populate attributes
 	 */
-	private function populate() {
-		$this->plugins = [];
-		$this->addressBookPlugins = [];
-		$this->calendarPlugins = [];
-		$this->collections = [];
+	private function populate(): void {
+		if ($this->populated) {
+			return;
+		}
+
 		foreach ($this->appManager->getInstalledApps() as $app) {
 			// load plugins and collections from info.xml
 			$info = $this->appManager->getAppInfo($app);
@@ -160,7 +155,7 @@ class PluginManager {
 		}
 	}
 
-	private function extractPluginList(array $array) {
+	private function extractPluginList(array $array): array {
 		if (isset($array['sabre']) && is_array($array['sabre'])) {
 			if (isset($array['sabre']['plugins']) && is_array($array['sabre']['plugins'])) {
 				if (isset($array['sabre']['plugins']['plugin'])) {
@@ -175,7 +170,7 @@ class PluginManager {
 		return [];
 	}
 
-	private function extractCollectionList(array $array) {
+	private function extractCollectionList(array $array): array {
 		if (isset($array['sabre']) && is_array($array['sabre'])) {
 			if (isset($array['sabre']['collections']) && is_array($array['sabre']['collections'])) {
 				if (isset($array['sabre']['collections']['collection'])) {
@@ -213,7 +208,7 @@ class PluginManager {
 		return $items;
 	}
 
-	private function extractCalendarPluginList(array $array):array {
+	private function extractCalendarPluginList(array $array): array {
 		if (isset($array['sabre']) && is_array($array['sabre'])) {
 			if (isset($array['sabre']['calendar-plugins']) && is_array($array['sabre']['calendar-plugins'])) {
 				if (isset($array['sabre']['calendar-plugins']['plugin'])) {
@@ -228,7 +223,7 @@ class PluginManager {
 		return [];
 	}
 
-	private function loadSabrePluginsFromInfoXml(array $plugins) {
+	private function loadSabrePluginsFromInfoXml(array $plugins): void {
 		foreach ($plugins as $plugin) {
 			try {
 				$this->plugins[] = $this->container->query($plugin);
@@ -242,7 +237,7 @@ class PluginManager {
 		}
 	}
 
-	private function loadSabreCollectionsFromInfoXml(array $collections) {
+	private function loadSabreCollectionsFromInfoXml(array $collections): void {
 		foreach ($collections as $collection) {
 			try {
 				$this->collections[] = $this->container->query($collection);
@@ -256,7 +251,7 @@ class PluginManager {
 		}
 	}
 
-	private function createPluginInstance(string $className) {
+	private function createPluginInstance(string $className): object {
 		try {
 			return $this->container->query($className);
 		} catch (QueryException $e) {
@@ -284,7 +279,7 @@ class PluginManager {
 		}
 	}
 
-	private function loadSabreCalendarPluginsFromInfoXml(array $calendarPlugins):void {
+	private function loadSabreCalendarPluginsFromInfoXml(array $calendarPlugins): void {
 		foreach ($calendarPlugins as $calendarPlugin) {
 			try {
 				$instantiatedCalendarPlugin = $this->container->query($calendarPlugin);
