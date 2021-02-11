@@ -265,7 +265,7 @@ class PluginManager {
 
 
 	/**
-	 * @param array $collections
+	 * @param string[] $classes
 	 * @return ServerPlugin[]
 	 * @throws \Exception
 	 */
@@ -280,7 +280,7 @@ class PluginManager {
 	}
 
 	/**
-	 * @param array $collections
+	 * @param string[] $classes
 	 * @return Collection[]
 	 */
 	private function loadSabreCollectionsFromInfoXml(array $classes): array {
@@ -294,7 +294,7 @@ class PluginManager {
 	}
 
 	/**
-	 * @param string[] $plugins
+	 * @param string[] $classes
 	 * @return IAddressBookProvider[]
 	 */
 	private function loadSabreAddressBookPluginsFromInfoXml(array $classes): array {
@@ -308,7 +308,7 @@ class PluginManager {
 	}
 
 	/**
-	 * @param string[] $calendarPlugins
+	 * @param string[] $classes
 	 * @return ICalendarProvider[]
 	 */
 	private function loadSabreCalendarPluginsFromInfoXml(array $classes): array {
