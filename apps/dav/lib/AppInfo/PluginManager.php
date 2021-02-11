@@ -34,6 +34,8 @@ use OCA\DAV\CalDAV\Integration\ICalendarProvider;
 use OCA\DAV\CardDAV\Integration\IAddressBookProvider;
 use OCP\App\IAppManager;
 use OCP\AppFramework\QueryException;
+use Sabre\DAV\Collection;
+use Sabre\DAV\ServerPlugin;
 use function array_map;
 use function class_exists;
 use function is_array;
@@ -57,14 +59,14 @@ class PluginManager {
 	/**
 	 * App plugins
 	 *
-	 * @var array
+	 * @var ServerPlugin[]
 	 */
 	private $plugins = [];
 
 	/**
 	 * App collections
 	 *
-	 * @var array
+	 * @var Collection[]
 	 */
 	private $collections = [];
 
@@ -99,7 +101,7 @@ class PluginManager {
 	/**
 	 * Returns an array of app-registered plugins
 	 *
-	 * @return array
+	 * @return ServerPlugin[]
 	 */
 	public function getAppPlugins() {
 		$this->populate();
@@ -238,6 +240,12 @@ class PluginManager {
 		return [];
 	}
 
+
+	/**
+	 * @param array $collections
+	 * @return ServerPlugin[]
+	 * @throws \Exception
+	 */
 	private function loadSabrePluginsFromInfoXml(array $plugins): array {
 		$result = [];
 		foreach ($plugins as $plugin) {
@@ -252,9 +260,19 @@ class PluginManager {
 			}
 		}
 
+		foreach ($result as $plugin) {
+			if (!($plugin instanceof ServerPlugin)) {
+				throw new \Exception('Sabre plugin class ' . get_class($plugin) . ' is not an instance of ' . ServerPlugin::class);
+			}
+		}
+
 		return $result;
 	}
 
+	/**
+	 * @param array $collections
+	 * @return Collection[]
+	 */
 	private function loadSabreCollectionsFromInfoXml(array $collections): array {
 		$result = [];
 		foreach ($collections as $collection) {
@@ -266,6 +284,12 @@ class PluginManager {
 				} else {
 					throw new \Exception("Sabre collection class '$collection' is unknown and could not be loaded");
 				}
+			}
+		}
+
+		foreach ($result as $collection) {
+			if (!($collection instanceof Collection)) {
+				throw new \Exception('Sabre plugin class ' . get_class($collection) . ' is not an instance of ' . Collection::class);
 			}
 		}
 
