@@ -71,7 +71,7 @@ class PluginManager {
 	/**
 	 * Address book plugins
 	 *
-	 * @var IAddressBookProvider[]|null
+	 * @var IAddressBookProvider[]
 	 */
 	private $addressBookPlugins = null;
 
